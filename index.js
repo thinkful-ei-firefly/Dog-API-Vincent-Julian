@@ -4,36 +4,35 @@
 
 
 function getDogImage(numberOfDogs) {
-  fetch(`https://dog.ceo/api/breed/hound/images
-`)
+  fetch(`https://dog.ceo/api/breeds/image/random${numberOfDogs}`)
     .then(response => response.json())
-    .then(responseJson =>
+    .then(responseJson => 
       displayResults(responseJson))
     .catch(error => alert('Something went wrong. Try again later.'));
 }
-
+  
 
 function displayResults(responseJson) {
   console.log(responseJson);
   //replace the existing image with the new one
-  $('.results-img').empty();
-
+ $('.results-img').empty();
+  
   responseJson.message.forEach(imgUrl => {
     $('.results-img').append(`<img src="${imgUrl}" class="results-img">`);
 
   });
-
+    
 }
 
 function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
-    let breedOfDog = $('input[name="breedOfDog"]').val();
+    let numOfDogs = $('input[name="numOfDogs"]').val();
     getDogImage(numOfDogs);
   });
 }
 
-$(function () {
+$(function() {
   console.log('App loaded! Waiting for submit!');
   watchForm();
 });
