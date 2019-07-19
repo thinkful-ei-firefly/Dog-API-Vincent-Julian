@@ -3,12 +3,12 @@
 
 
 
-function getDogImage(numberOfDogs) {
-  fetch(`https://dog.ceo/api/breeds/image/random${numberOfDogs}`)
+function getDogImage(numberOfDogs=3) {
+  fetch(`https://dog.ceo/api/breeds/image/random/${numberOfDogs}`)
     .then(response => response.json())
     .then(responseJson => 
       displayResults(responseJson))
-    .catch(error => alert('Something went wrong. Try again later.'));
+    .catch(error=> alert('Something went wrong. Try again later.'));
 }
   
 
